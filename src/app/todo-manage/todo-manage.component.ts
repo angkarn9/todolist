@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./todo-manage.component.scss']
 })
 export class TodoManageComponent implements OnInit {
-
+  title = 'To do list';
   todoListForm: FormGroup;
   todoList: TodoItem[] = [];
 
