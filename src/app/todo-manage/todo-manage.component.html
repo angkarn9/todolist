@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <h1>To do list</h1>
+  <form [formGroup]="todoListForm">
+    <div class="form-group">
+      <label for="inputTopic">Topic</label>
+      <input type="text" class="form-control" id="inputTopic" placeholder="Topic" formControlName="topic" required
+        [ngClass]="{'is-invalid': todoListForm.controls.topic.errors && todoListForm.controls.topic.touched}">
+      <div *ngIf="todoListForm.controls.topic.errors" class="invalid-feedback">Please input Topic.</div>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">Desciption</label>
+      <input type="text" class="form-control" id="inputDescription" placeholder="Description" formControlName="description" required
+      [ngClass]="{'is-invalid': todoListForm.controls.description.errors && todoListForm.controls.description.touched}">
+      <div *ngIf="todoListForm.controls.description.errors" class="invalid-feedback">Please input Desciption.</div>
+    </div>
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-primary" (click)="onAdd()" [disabled]="todoListForm.invalid">Add</button>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Desciption</th>
+          <th scope="col" class="button-action">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="todoList.length == 0"><td colspan="4" class="text-center">No data.</td></tr>
+        <tr *ngFor="let item of todoList; let rowIndex = index;">
+          <th scope="row">{{ rowIndex+1 }}</th>
+          <td>{{ item.topic }}</td>
+          <td>{{ item.description }}</td>
+          <td class="button-action"><button type="button" class="btn btn-danger" (click)="onRemove(item.id)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
