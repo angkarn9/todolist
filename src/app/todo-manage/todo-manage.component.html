@@ -21,10 +21,10 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Topic</th>
-          <th scope="col">Desciption</th>
-          <th scope="col" class="button-action">Remove</th>
+          <th>#</th>
+          <th>Topic</th>
+          <th>Description</th>
+          <th class="button-action">Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,7 @@
           <th scope="row">{{ rowIndex+1 }}</th>
           <td>{{ item.topic }}</td>
           <td>{{ item.description }}</td>
-          <td class="button-action"><button type="button" class="btn btn-danger" (click)="onRemove(item.id)">Remove</button></td>
+          <td class="button-action"><button type="button" class="btn btn-danger" id="btnRemove{{item.id}}" (click)="onRemove(item.id)">Remove</button></td>
         </tr>
       </tbody>
     </table>

@@ -42,7 +42,7 @@ export class TodoManageComponent implements OnInit {
 
 
 
-class TodoItem {
+export class TodoItem {
   id: number;
   topic: string;
   description: string;
