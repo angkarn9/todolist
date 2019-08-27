@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Todo } from '../model/todo';
 
 @Component({
   selector: 'app-todo-manage',
@@ -7,49 +8,34 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./todo-manage.component.scss']
 })
 export class TodoManageComponent implements OnInit {
-  title = 'To do list';
-  todoListForm: FormGroup;
-  todoList: TodoItem[] = [];
 
+  todoList: Todo[];
+  todoForm: FormGroup;
+  errorMessage = '';
   constructor(
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.todoListForm = this.formBuilder.group({
-      topic: ['', Validators.required],
-      description: ['', Validators.required]
+    this.todoList = [];
+    this.todoForm = this.formBuilder.group({
+      topic: [''],
+      description: ['']
     });
   }
 
-  onAdd() {
-    if (this.todoListForm.invalid) {
-      return;
+  add() {
+    const topic: string = this.todoForm.get('topic').value;
+    const description: string = this.todoForm.get('description').value;
+
+    if (topic === '') {
+      this.errorMessage = 'topic is require field';
     }
-    const newItem = new TodoItem({
-      id: this.todoList.length + 1,
-      topic: this.todoListForm.get('topic').value,
-      description: this.todoListForm.get('description').value
+    const todo = new Todo({
+      id: 1,
+      topic,
+      description
     });
-    this.todoList.push(newItem);
-    this.todoListForm.reset();
-  }
-
-  onRemove(id: number) {
-    this.todoList = this.todoList.filter(item => item.id !== id);
-  }
-}
-
-
-
-export class TodoItem {
-  id: number;
-  topic: string;
-  description: string;
-
-  constructor({id, topic, description}: {id: number, topic: string, description: string}) {
-    this.id = id;
-    this.topic = topic;
-    this.description = description;
+    this.todoList.push(todo);
   }
 }
