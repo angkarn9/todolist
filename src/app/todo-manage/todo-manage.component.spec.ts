@@ -27,6 +27,8 @@ describe('TodoManageComponent', () => {
 
   it('should append todoList when add new todo', () => {
     component.ngOnInit();
+    component.todoForm.controls.topic.patchValue('topic1');
+    component.todoForm.controls.description.patchValue('desc1');
     component.add();
     const expected = [new Todo({ id: 1, topic: 'topic1', description: 'desc1' })];
     expect(component.todoList).toEqual(expected);
