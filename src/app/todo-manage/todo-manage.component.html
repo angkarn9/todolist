@@ -1,20 +1,20 @@
 <div class="container-fluid">
   <h1>To do list</h1>
-  <form [formGroup]="todoListForm">
+  <form [formGroup]="todoForm">
     <div class="form-group">
       <label for="inputTopic">Topic</label>
       <input type="text" class="form-control" id="inputTopic" placeholder="Topic" formControlName="topic" required
-        [ngClass]="{'is-invalid': todoListForm.controls.topic.errors && todoListForm.controls.topic.touched}">
-      <div *ngIf="todoListForm.controls.topic.errors" class="invalid-feedback">Please input Topic.</div>
+        [ngClass]="{'is-invalid': todoForm.controls.topic.errors && todoForm.controls.topic.touched}">
+      <div *ngIf="todoForm.controls.topic.errors" class="invalid-feedback">Please input Topic.</div>
     </div>
     <div class="form-group">
       <label for="inputDescription">Desciption</label>
       <input type="text" class="form-control" id="inputDescription" placeholder="Description" formControlName="description" required
-      [ngClass]="{'is-invalid': todoListForm.controls.description.errors && todoListForm.controls.description.touched}">
-      <div *ngIf="todoListForm.controls.description.errors" class="invalid-feedback">Please input Desciption.</div>
+      [ngClass]="{'is-invalid': todoForm.controls.description.errors && todoForm.controls.description.touched}">
+      <div *ngIf="todoForm.controls.description.errors" class="invalid-feedback">Please input Desciption.</div>
     </div>
     <div class="form-group text-center">
-      <button type="button" class="btn btn-primary" id="btnAdd" (click)="add()" [disabled]="todoListForm.invalid">Add</button>
+      <button type="button" class="btn btn-primary" id="btnAdd" (click)="add()" [disabled]="todoForm.invalid">Add</button>
     </div>
   </form>
   <div class="table-responsive">

@@ -25,12 +25,11 @@ describe('TodoManageComponent', () => {
     expect(component.todoForm.controls.description.value).toEqual('');
   });
 
-  fit('should append todoList when add new todo', () => {
+  it('should append todoList when add new todo', () => {
     component.ngOnInit();
     component.add();
-    const expected = [new Todo({ id: 1, topic: 'topic1ss', description: 'desc1' })];
-    const expected2 = [new Todo({ id: 2, topic: 'topic1ss', description: 'desc1' })];
-    expect(expected[0]).toEqual(expected2[0]);
+    const expected = [new Todo({ id: 1, topic: 'topic1', description: 'desc1' })];
+    expect(component.todoList).toEqual(expected);
   });
 
   it(`should set error message 'topic is require field' when topic is empty`, () => {
